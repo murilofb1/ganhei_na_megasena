@@ -3,4 +3,6 @@
     <string name="title">Boa sorte!</string>
     <string name="number_hint">Digite um número entre 6 e 15</string>
     <string name="number_generator">Gerar números</string>
+    <string name="nao_pode_ficar_vazio">O campo não pode ficar vazio!</string>
+    <string name="numero_entre_6_e_15">Insira um número entre 6 e 15</string>
 </resources>
