@@ -1,5 +1,5 @@
 # App Ganhei na Mega-Sena
-Aplicativo simples para gerar numeros para a Mega-Sena desenvolvido durante o curso Android Express do Professor Tiago Aguiar
+Aplicativo simples para gerar numeros para a Mega-Sena de acordo com o input do usuário desenvolvido durante o curso Android Express do Professor Tiago Aguiar
 
 ## O que foi aprendido?
 * Construção de layouts utilizando componentes como Buttons, EditText e TextViews.
@@ -17,3 +17,5 @@ Aplicativo simples para gerar numeros para a Mega-Sena desenvolvido durante o cu
 
 # Alterações feitas por mim
 * Adicionado ViewBinding ao projeto, ao invés de usar o findViewById
+* Adicionado a lógica para o usuário não inserir numero maior que 15
+* Separado a parte lógica da activity de layout

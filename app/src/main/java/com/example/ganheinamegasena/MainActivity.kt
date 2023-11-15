@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import com.example.ganheinamegasena.databinding.ActivityMainBinding
 import kotlin.random.Random
 
@@ -25,11 +26,25 @@ class MainActivity : AppCompatActivity() {
         }
 
         bind.btnGenerate.setOnClickListener {
-            generateNumbers(bind.editNumber.text.toString(), bind.txtResult)
+            generateNumbers(bind.editNumber.text.toString())
+        }
+
+        bind.editNumber.addTextChangedListener {
+            val text = it.toString()
+            if (text.isNotEmpty()) {
+                val textInt = text.toInt()
+
+                if (textInt > 15) {
+                    bind.editNumber.apply {
+                        setText(text.subSequence(0, 1).toString())
+                        setSelection(length())
+                    }
+                }
+            }
         }
     }
 
-    private fun generateNumbers(qtdStr: String, result: TextView) {
+    private fun generateNumbers(qtdStr: String) {
         if (qtdStr.isEmpty()) {
             toast.showToast(getString(R.string.nao_pode_ficar_vazio))
             return
@@ -41,18 +56,9 @@ class MainActivity : AppCompatActivity() {
             toast.showToast(getString(R.string.numero_entre_6_e_15))
             return
         }
-        val resultStr = getNumbersSet(qtdNum).joinToString(" - ")
-        result.text = resultStr
-        pref.putLastNumbers(resultStr)
-    }
 
-    private fun getNumbersSet(size: Int): MutableSet<Int> {
-        val numberSet = mutableSetOf<Int>()
-        while (true) {
-            val number = Random.nextInt(60)
-            numberSet.add(number + 1)
-            if (numberSet.size == size) break
-        }
-        return numberSet
+        val resultStr = MegaSena.generateNumbers(qtdNum).joinToString(" - ")
+        bind.txtResult.text = resultStr
+        pref.putLastNumbers(resultStr)
     }
 }
